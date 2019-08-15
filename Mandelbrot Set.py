@@ -1,43 +1,32 @@
 import graphics
-
 import numpy
 
 c = 2
-precision = 100
 scale = 200
 width = 1000
 length = 700
 
 
 win = graphics.GraphWin("window", width, length)
-
 for num_y in range(0, length + 1):
     
-
     y = (num_y/(scale)) - ((length/2)/scale) 
     for num_x in range(0, width + 1):
-
         count = 0
         check = 0
-
         x = (num_x/(scale)) - ((width/2)/scale) 
 
-
         z = complex(x,y)**2 - c
-
-        while count < precision:
-
+        while count < 100:
             point = graphics.Point(num_x, num_y)
 
-
             z = z**2 - c
-
 
             if abs(z) > 1000000000000:
 
                 check = count
 
-                count = precision
+                count = 100
 
 
             count += 1
@@ -46,13 +35,13 @@ for num_y in range(0, length + 1):
             point.setFill("black")
 
         elif check > 50:
-            point.setFill("purple")           
+            point.setFill("red")           
             
         elif check > 40:
-            point.setFill("blue")           
+            point.setFill("purple")           
             
         elif check > 32:
-            point.setFill("cyan")
+            point.setFill("blue")
             
         elif check > 26:
             point.setFill("white")
@@ -76,10 +65,10 @@ for num_y in range(0, length + 1):
             point.setFill("white")
             
         elif check > 4:
-            point.setFill("cyan")
+            point.setFill("blue")
 
         else:
-            point.setFill("blue")
+            point.setFill("cyan")
 
         point.draw(win)
 win.postscript(file="image.eps", colormode='color')
